@@ -7,18 +7,12 @@ jobs:
       - checkout
       - run: npm i -g npm-upgrade # to install npm
       - run: npm install -g esw
-      - persist_to_workspace:
-          root: .
-          paths:
-            - node_modules
       - run: npm run lint
   test:
     docker:
       - image: cimg/node:18.1.0
     steps:
       - checkout
-      - attach_workspace:
-          at: .
       - run: npm i -g npm-upgrade
       - run: npm install -g jest
       - run: npm run test
@@ -27,8 +21,6 @@ jobs:
       - image: cimg/node:18.1.0
     steps:
       - checkout
-      - attach_workspace:
-          at: .
       - run: npm audit
 workflows:
   ci-pipeline-workflow:
