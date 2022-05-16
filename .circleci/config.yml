@@ -5,8 +5,8 @@ jobs:
       - image: cimg/node:18.1.0
     steps:
       - checkout
+      - run: npm i -g npm-upgrade # to install npm
       - run: npm install -g esw
-      - run: npm i # to install npm
       - persist_to_workspace:
           root: .
           paths:
@@ -19,8 +19,8 @@ jobs:
       - checkout
       - attach_workspace:
           at: ./node_modules
+      - run: npm i -g npm-upgrade
       - run: npm install -g jest
-      - run: npm i
       - run: npm run test
   analyze:
     docker:
@@ -29,7 +29,6 @@ jobs:
       - checkout
       - attach_workspace:
           at: ./node_modules
-      - run: npm i
       - run: npm audit
 workflows:
   ci-pipeline-workflow:
