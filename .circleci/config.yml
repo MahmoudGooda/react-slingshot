@@ -10,7 +10,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - ./node_modules
+            - npm
       - run: npm run lint
   test:
     docker:
@@ -18,7 +18,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./node_modules
+          at: .
       - run: npm i -g npm-upgrade
       - run: npm install -g jest
       - run: npm run test
@@ -28,7 +28,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./node_modules
+          at: .
       - run: npm audit
 workflows:
   ci-pipeline-workflow:
