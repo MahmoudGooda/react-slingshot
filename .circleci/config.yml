@@ -5,6 +5,7 @@ jobs:
       - image: cimg/node:18.1.0
     steps:
       - checkout
+      - run: npm install -g esw
       - run: npm i # to install npm
       - persist_to_workspace:
           root: .
@@ -18,7 +19,8 @@ jobs:
       - checkout
       - attach_workspace:
           at: ./node_modules
-      - run: npm i 
+      - run: npm install -g jest
+      - run: npm i
       - run: npm run test
   analyze:
     docker:
